@@ -22,7 +22,7 @@ $ npm install dot-notes
 This module follows the following notations:
 
 ```
-// Any key may be reference via dot separators
+// Any key may be referenced via dot separators
 test.one
 
 // Array elements must be wrapped in square brackets
@@ -42,7 +42,7 @@ The parser is quite generous in what it will accept, although certain forms are 
 
 ### APIs ###
 
-#### fromNotation(notedObj[, obj]) ####
+#### fromNotation(notatedObj[, obj]) ####
 
 This method will transform an object with flattened keys in the top level into the nested counterpart being represented by the keys. This method accepts a second parameter in order to merge keys over an existing object. If no object is provided, an empty one will be used.
 
@@ -62,7 +62,7 @@ var obj2 = {
 
 #### toNotation(obj) ####
 
-Similar to the above method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot noted keys.
+Similar to the above method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot notated keys.
 
 ```
 var obj = {
@@ -80,7 +80,7 @@ var obj2 = {
 
 #### parseObject(str[, val[, obj]]) ####
 
-This method will take a dot noted string and convert it into an object. A second parameter can be provided to set the innermost field to a specific value. Similar to the `fromNotation` method, this method can accept an Object parameter to merge keys into.
+This method will take a dot notated string and convert it into an object. A second parameter can be provided to set the innermost field to a specific value. Similar to the `fromNotation` method, this method can accept an Object parameter to merge keys into.
 
 ```
 var obj = dots.parseObject('this.is.a.test', 5);
