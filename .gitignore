@@ -1,0 +1,14 @@
+# os x stuff
+.DS_Store
+
+# idea products
+.idea
+
+# node stuff
+node_modules
+
+# npm stuff
+npm-debug.log
+
+# coverage
+coverage.html

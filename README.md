@@ -1,0 +1,107 @@
+dot-notes [![Build Status](https://travis-ci.org/iwhitfield/dot-notes.svg?branch=master)](https://travis-ci.org/iwhitfield/dot-notes) [![Coverage Status](https://coveralls.io/repos/iwhitfield/dot-notes/badge.png)](https://coveralls.io/r/iwhitfield/dot-notes)
+=========
+
+- [Setup](#setup)
+- [Notation](#notation)
+- [How Does It Work?](#apis)
+- [Invalid Syntax](#exceptions)
+- [Issues](#issues)
+
+This module provides a simple way to convert between JavaScript objects and dot notation (see below). In terms of compatibility, `dot-notes` is built on [TravisCI](https://travis-ci.org/iwhitfield/dot-notes) after every commit using Node v0.8.x, 0.10.x, 0.12.x. In addition to this, the latest version of io.js is also covered in these builds.
+
+### Setup ###
+
+`dot-notes` is available on [npm](https://www.npmjs.com/package/dot-notes), so simply install it:
+
+```
+$ npm install dot-notes
+```
+
+### Notation ###
+
+This module follows the following notations:
+
+```
+// Any key may be reference via dot separators
+test.one
+
+// Array elements must be wrapped in square brackets
+test.one[1]
+
+// Keys with special characters much go in quotes, in square brackets
+test.one[1]['my.test']
+
+// Quotes can be either double or single, as long as they match
+test.one[1]["my.test"]
+
+// Should you wish to, you can place normal field names in this form
+test['one']
+```
+
+The parser is quite generous in what it will accept, although certain forms are blocked on purpose due to bad practice (e.g. `test[key]`). If your dot notation does not work correctly, `ParseException` will be thrown.
+
+### APIs ###
+
+#### fromNotation(notedObj[, obj]) ####
+
+This method will transform an object with flattened keys in the top level into the nested counterpart being represented by the keys. This method accepts a second parameter in order to merge keys over an existing object. If no object is provided, an empty one will be used.
+
+```
+var obj = {
+    'test.one': 5
+}
+
+// becomes
+
+var obj2 = {
+    test: {
+        one: 5
+    }
+}
+```
+
+#### toNotation(obj) ####
+
+Similar to the above method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot noted keys.
+
+```
+var obj = {
+    test: {
+        one: 5
+    }
+}
+
+// becomes
+
+var obj2 = {
+    'test.one': 5
+}
+```
+
+#### parseObject(str[, val[, obj]]) ####
+
+This method will take a dot noted string and convert it into an object. A second parameter can be provided to set the innermost field to a specific value. Similar to the `fromNotation` method, this method can accept an Object parameter to merge keys into.
+
+```
+var obj = dots.parseObject('this.is.a.test', 5);
+
+// becomes
+
+var obj2 = {
+    this: {
+        is: {
+            a: {
+                test: 5
+            }
+        }
+    }
+}
+```
+
+### Exceptions ###
+
+There is very basic exception handling should an invalid syntax be used. Should this occur, a `ParseException` will be thrown, with an (attempted) reference to where the error is in the string.
+
+### Issues ###
+
+If you find any issues inside this module, feel free to open an issue [here](https://github.com/iwhitfield/dot-notes/issues "dot-notes Issues").
