@@ -1,4 +1,4 @@
-dot-notes [![Build Status](https://travis-ci.org/iwhitfield/dot-notes.svg?branch=master)](https://travis-ci.org/iwhitfield/dot-notes) [![Coverage Status](https://coveralls.io/repos/iwhitfield/dot-notes/badge.png)](https://coveralls.io/r/iwhitfield/dot-notes)
+dot-notes [![Build Status](https://travis-ci.org/iwhitfield/dot-notes.svg?branch=master)](https://travis-ci.org/iwhitfield/dot-notes) [![Code Climate](https://codeclimate.com/github/iwhitfield/dot-notes/badges/gpa.svg)](https://codeclimate.com/github/iwhitfield/dot-notes) [![Test Coverage](https://codeclimate.com/github/iwhitfield/dot-notes/badges/coverage.svg)](https://codeclimate.com/github/iwhitfield/dot-notes)
 =========
 
 - [Setup](#setup)
@@ -7,7 +7,7 @@ dot-notes [![Build Status](https://travis-ci.org/iwhitfield/dot-notes.svg?branch
 - [Invalid Syntax](#exceptions)
 - [Issues](#issues)
 
-This module provides a simple way to convert between JavaScript objects and dot notation (see below). In terms of compatibility, `dot-notes` is built on [TravisCI](https://travis-ci.org/iwhitfield/dot-notes) after every commit using Node v0.8.x, 0.10.x, 0.12.x. In addition to this, the latest version of io.js is also covered in these builds.
+This module provides a simple way to convert between JavaScript objects and dot notation (see below). In terms of compatibility, `dot-notes` is built on [TravisCI](https://travis-ci.org/iwhitfield/dot-notes) after every commit using Node v0.8.x, 0.10.x, 0.12.x. In addition to this, the latest version of io.js is also covered in these builds. Build results are submitted to [Code Climate](https://codeclimate.com/github/iwhitfield/dot-notes) for analysis.
 
 ### Setup ###
 

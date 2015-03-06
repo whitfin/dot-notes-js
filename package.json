@@ -1,45 +1,46 @@
 {
-    "name": "dot-notes",
-    "version": "1.0.0",
-    "description": "Two way conversions between objects and dot notation",
-    "author": {
-        "name": "Isaac Whitfield",
-        "email": "iwhitfield@appcelerator.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/iwhitfield/dot-notes.git"
-    },
-    "bugs": "http://github.com/iwhitfield/dot-notes/issues",
-    "license": "MIT",
-    "readmeFilename": "README.md",
-    "keywords": [
-        "converstion",
-        "dot-notation",
-        "objects",
-        "parsing"
-    ],
-    "devDependencies": {
-        "blanket": "1.1.6",
-        "coveralls": "2.11.2",
-        "mocha": "2.1.0",
-        "mocha-lcov-reporter": "0.0.1",
-        "should": "5.0.0"
-    },
-    "scripts": {
-        "coverage": "mocha -r blanket -R html-cov test > coverage.html",
-        "test": "mocha test"
-    },
-    "config": {
-        "blanket": {
-            "data-cover-never": [
-                "node_modules",
-                "test"
-            ],
-            "pattern": [
-                "lib/dot.notes.js",
-                "lib/util.js"
-            ]
-        }
+  "name": "dot-notes",
+  "version": "1.0.0",
+  "description": "Two way conversions between objects and dot notation",
+  "author": {
+    "name": "Isaac Whitfield",
+    "email": "iwhitfield@appcelerator.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/iwhitfield/dot-notes.git"
+  },
+  "bugs": "http://github.com/iwhitfield/dot-notes/issues",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "converstion",
+    "dot-notation",
+    "objects",
+    "parsing"
+  ],
+  "devDependencies": {
+    "blanket": "1.1.6",
+    "codeclimate-test-reporter": "0.0.4",
+    "mocha": "2.1.0",
+    "mocha-lcov-reporter": "0.0.1",
+    "should": "5.0.0"
+  },
+  "scripts": {
+    "coverage": "mocha -r blanket -R html-cov test",
+    "lcov": "mocha -r blanket -R mocha-lcov-reporter",
+    "test": "mocha test"
+  },
+  "config": {
+    "blanket": {
+      "data-cover-never": [
+        "node_modules",
+        "test"
+      ],
+      "pattern": [
+        "lib/dot.notes.js",
+        "lib/util.js"
+      ]
     }
+  }
 }
