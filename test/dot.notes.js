@@ -159,7 +159,7 @@ describe('#get', function(){
             'test': 5
         };
 
-        var value = dots.get(unNotatedObj, 'test');
+        var value = dots.get('test', unNotatedObj);
 
         should(value).be.ok;
         should(value).be.a.Number;
@@ -173,7 +173,7 @@ describe('#get', function(){
             }
         };
 
-        var value = dots.get(unNotatedObj, 'test.value');
+        var value = dots.get('test.value', unNotatedObj);
 
         should(value).be.ok;
         should(value).be.a.Number;
@@ -187,7 +187,7 @@ describe('#get', function(){
             }
         };
 
-        var value = dots.get(unNotatedObj, 'test.value[2]');
+        var value = dots.get('test.value[2]', unNotatedObj);
 
         should(value).be.ok;
         should(value).be.a.Number;
@@ -201,7 +201,7 @@ describe('#get', function(){
             }
         };
 
-        var value = dots.get(unNotatedObj, 'test[\'value\']');
+        var value = dots.get('test[\'value\']', unNotatedObj);
 
         should(value).be.ok;
         should(value).be.a.Number;
@@ -213,7 +213,7 @@ describe('#get', function(){
             'test': 5
         };
 
-        var value = dots.get(unNotatedObj, 'test.one');
+        var value = dots.get('test.one', unNotatedObj);
 
         should(value).not.be.ok;
     });
@@ -225,7 +225,7 @@ describe('#get', function(){
             }
         };
 
-        var value = dots.get(unNotatedObj, 'test.one.two');
+        var value = dots.get('test.one.two', unNotatedObj);
 
         should(value).not.be.ok;
     });
