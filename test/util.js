@@ -2,18 +2,32 @@ var util = require('../lib/util');
 
 var should = require('should');
 
-describe('#toKeys', function(){
+describe('#keys', function(){
 
     it('is able to parse variable keys', function(){
 
         var str = 'this.is.a.test[0][\'test\']["test"].test[15].test';
 
-        var keys = util.toKeys(str);
+        var keys = util.keys(str);
 
         should(keys).be.ok;
         should(keys).be.an.Array;
         should(keys).have.length(10);
-        should(keys.join(',')).eql('this,is,a,test,[0],test,test,test,[15],test');
+        should(keys.join(',')).eql('this,is,a,test,0,test,test,test,15,test');
+    });
+
+    it('maintains integer types on array keys', function(){
+
+        var str = 'test[5].10';
+
+        var keys = util.keys(str);
+
+        should(keys).be.ok;
+        should(keys).be.an.Array;
+        should(keys).have.length(3);
+
+        keys[1].should.be.a.Number;
+        keys[2].should.be.a.String;
     });
 
     it('throws ParseExceptions on empty braces', function(){
@@ -21,7 +35,7 @@ describe('#toKeys', function(){
         var str = 'this.is[]';
 
         try {
-            util.toKeys(str);
+            util.keys(str);
             throw new Error('Should have failed!');
         } catch(e) {
             should(e.name).eql('ParseException');
@@ -36,7 +50,7 @@ describe('#toKeys', function(){
         var str = 'this.is[\'t]';
 
         try {
-            util.toKeys(str);
+            util.keys(str);
             throw new Error('Should have failed!');
         } catch(e) {
             should(e.name).eql('ParseException');
@@ -50,7 +64,7 @@ describe('#toKeys', function(){
         var str = 'this..is';
 
         try {
-            util.toKeys(str);
+            util.keys(str);
             throw new Error('Should have failed!');
         } catch(e) {
             should(e.name).eql('ParseException');

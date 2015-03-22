@@ -2,122 +2,69 @@ var dots = require('../');
 
 var should = require('should');
 
-describe('#fromNotation', function(){
+describe('#create', function(){
 
-    it('parses a flat object into nests', function(){
-        var notatedObj = {
-            'this.is.a.test': 5
-        };
+    it('parses a string into an object', function(){
+        var parsedObj = dots.create('this.is.a.test', 5);
 
-        var obj = dots.fromNotation(notatedObj);
-
-        should(obj).be.ok;
-        should(obj).be.an.Object;
-        should(obj.this).be.ok;
-        should(obj.this).be.an.Object;
-        should(obj.this.is).be.ok;
-        should(obj.this.is).be.an.Object;
-        should(obj.this.is.a).be.ok;
-        should(obj.this.is.a).be.an.Object;
-        should(obj.this.is.a.test).be.ok;
-        should(obj.this.is.a.test).be.a.Number;
-        should(obj.this.is.a.test).eql(5);
+        should(parsedObj).be.ok;
+        should(parsedObj).be.an.Object;
+        should(parsedObj.this).be.ok;
+        should(parsedObj.this).be.an.Object;
+        should(parsedObj.this.is).be.ok;
+        should(parsedObj.this.is).be.an.Object;
+        should(parsedObj.this.is.a).be.ok;
+        should(parsedObj.this.is.a).be.an.Object;
+        should(parsedObj.this.is.a.test).be.ok;
+        should(parsedObj.this.is.a.test).be.ok;
+        should(parsedObj.this.is.a.test).be.a.Number;
+        should(parsedObj.this.is.a.test).eql(5);
     });
 
-    it('parses multiple keys into nests', function(){
-        var notatedObj = {
-            'first.one': 5,
-            'second.one': 5
-        };
+    it('handles undefined values', function(){
+        var parsedObj = dots.create('this.is.a.test');
 
-        var obj = dots.fromNotation(notatedObj);
-
-        should(obj).be.ok;
-        should(obj).be.an.Object;
-        should(obj.first).be.ok;
-        should(obj.first).be.an.Object;
-        should(obj.first.one).be.ok;
-        should(obj.first.one).be.an.Number;
-        should(obj.first.one).eql(5);
-        should(obj.second).be.ok;
-        should(obj.second).be.an.Object;
-        should(obj.second.one).be.ok;
-        should(obj.second.one).be.a.Number;
-        should(obj.second.one).eql(5);
+        should(parsedObj).be.ok;
+        should(parsedObj).be.an.Object;
+        should(parsedObj.this).be.ok;
+        should(parsedObj.this).be.an.Object;
+        should(parsedObj.this.is).be.ok;
+        should(parsedObj.this.is).be.an.Object;
+        should(parsedObj.this.is.a).be.ok;
+        should(parsedObj.this.is.a).be.an.Object;
+        should(parsedObj.this.is.a.test).not.be.ok;
     });
 
-    it('merges together multiple keys', function(){
-        var notatedObj = {
-            'test.one': 5,
-            'test.two': 5
-        };
-
-        var obj = dots.fromNotation(notatedObj);
-
-        should(obj).be.ok;
-        should(obj).be.an.Object;
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.one).be.ok;
-        should(obj.test.one).be.an.Number;
-        should(obj.test.one).eql(5);
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.two).be.ok;
-        should(obj.test.two).be.a.Number;
-        should(obj.test.two).eql(5);
-    });
-
-    it('merges together multiple keys', function(){
-        var notatedObj = {
-            'test.one': 5,
-            'test.two': 5
-        };
-
-        var obj = dots.fromNotation(notatedObj);
-
-        should(obj).be.ok;
-        should(obj).be.an.Object;
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.one).be.ok;
-        should(obj.test.one).be.an.Number;
-        should(obj.test.one).eql(5);
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.two).be.ok;
-        should(obj.test.two).be.a.Number;
-        should(obj.test.two).eql(5);
-    });
-
-    it('merges together multiple objects', function(){
-        var notatedObj = {
-            'test.one': 5
-        };
-
-        var obj = dots.fromNotation(notatedObj, {
-            test: {
-                two: 5
+    it('merges a string into an object', function(){
+        var parsedObj = dots.create('this.is.a.test', 5, {
+            this: {
+                is: {
+                    a: {
+                        party: 5
+                    }
+                }
             }
         });
 
-        should(obj).be.ok;
-        should(obj).be.an.Object;
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.one).be.ok;
-        should(obj.test.one).be.an.Number;
-        should(obj.test.one).eql(5);
-        should(obj.test).be.ok;
-        should(obj.test).be.an.Object;
-        should(obj.test.two).be.ok;
-        should(obj.test.two).be.a.Number;
-        should(obj.test.two).eql(5);
+        should(parsedObj).be.ok;
+        should(parsedObj).be.an.Object;
+        should(parsedObj.this).be.ok;
+        should(parsedObj.this).be.an.Object;
+        should(parsedObj.this.is).be.ok;
+        should(parsedObj.this.is).be.an.Object;
+        should(parsedObj.this.is.a).be.ok;
+        should(parsedObj.this.is.a).be.an.Object;
+        should(parsedObj.this.is.a.test).be.ok;
+        should(parsedObj.this.is.a.test).be.a.Number;
+        should(parsedObj.this.is.a.test).eql(5);
+        should(parsedObj.this.is.a.party).be.ok;
+        should(parsedObj.this.is.a.party).be.a.Number;
+        should(parsedObj.this.is.a.party).eql(5);
     });
 
 });
 
-describe('#toNotation', function() {
+describe('#flatten', function() {
 
     it('converts an object into flat dot notation', function () {
         var obj = {
@@ -126,7 +73,7 @@ describe('#toNotation', function() {
             }
         };
 
-        var notatedObj = dots.toNotation(obj);
+        var notatedObj = dots.flatten(obj);
 
         should(notatedObj).be.ok;
         should(notatedObj).be.an.Object;
@@ -143,7 +90,7 @@ describe('#toNotation', function() {
             }
         };
 
-        var notatedObj = dots.toNotation(obj);
+        var notatedObj = dots.flatten(obj);
 
         should(notatedObj).be.ok;
         should(notatedObj).be.an.Object;
@@ -169,7 +116,7 @@ describe('#toNotation', function() {
             }
         };
 
-        var notatedObj = dots.toNotation(obj);
+        var notatedObj = dots.flatten(obj);
 
         should(notatedObj).be.ok;
         should(notatedObj).be.an.Object;
@@ -194,7 +141,7 @@ describe('#toNotation', function() {
             }
         };
 
-        var notatedObj = dots.toNotation(obj);
+        var notatedObj = dots.flatten(obj);
 
         should(notatedObj).be.ok;
         should(notatedObj).be.an.Object;
@@ -205,64 +152,197 @@ describe('#toNotation', function() {
 
 });
 
-describe('#parseObject', function(){
+describe('#get', function(){
 
-    it('parses a string into an object', function(){
-        var parsedObj = dots.parseObject('this.is.a.test', 5);
-        
-        should(parsedObj).be.ok;
-        should(parsedObj).be.an.Object;
-        should(parsedObj.this).be.ok;
-        should(parsedObj.this).be.an.Object;
-        should(parsedObj.this.is).be.ok;
-        should(parsedObj.this.is).be.an.Object;
-        should(parsedObj.this.is.a).be.ok;
-        should(parsedObj.this.is.a).be.an.Object;
-        should(parsedObj.this.is.a.test).be.ok;
-        should(parsedObj.this.is.a.test).be.ok;
-        should(parsedObj.this.is.a.test).be.a.Number;
-        should(parsedObj.this.is.a.test).eql(5);
+    it('retrieves a value from an object', function(){
+        var unNotatedObj = {
+            'test': 5
+        };
+
+        var value = dots.get(unNotatedObj, 'test');
+
+        should(value).be.ok;
+        should(value).be.a.Number;
+        should(value).eql(5);
+    });
+
+    it('retrieves a value from a get object', function(){
+        var unNotatedObj = {
+            'test': {
+                'value': 5
+            }
+        };
+
+        var value = dots.get(unNotatedObj, 'test.value');
+
+        should(value).be.ok;
+        should(value).be.a.Number;
+        should(value).eql(5);
+    });
+
+    it('handles Array values', function(){
+        var unNotatedObj = {
+            'test': {
+                'value': [ 1, 2, 3 ]
+            }
+        };
+
+        var value = dots.get(unNotatedObj, 'test.value[2]');
+
+        should(value).be.ok;
+        should(value).be.a.Number;
+        should(value).eql(3);
+    });
+
+    it('handles special keys', function(){
+        var unNotatedObj = {
+            'test': {
+                'value': 5
+            }
+        };
+
+        var value = dots.get(unNotatedObj, 'test[\'value\']');
+
+        should(value).be.ok;
+        should(value).be.a.Number;
+        should(value).eql(5);
+    });
+
+    it('handles undefined keys', function(){
+        var unNotatedObj = {
+            'test': 5
+        };
+
+        var value = dots.get(unNotatedObj, 'test.one');
+
+        should(value).not.be.ok;
     });
 
     it('handles undefined values', function(){
-        var parsedObj = dots.parseObject('this.is.a.test');
+        var unNotatedObj = {
+            'test': {
 
-        should(parsedObj).be.ok;
-        should(parsedObj).be.an.Object;
-        should(parsedObj.this).be.ok;
-        should(parsedObj.this).be.an.Object;
-        should(parsedObj.this.is).be.ok;
-        should(parsedObj.this.is).be.an.Object;
-        should(parsedObj.this.is.a).be.ok;
-        should(parsedObj.this.is.a).be.an.Object;
-        should(parsedObj.this.is.a.test).not.be.ok;
+            }
+        };
+
+        var value = dots.get(unNotatedObj, 'test.one.two');
+
+        should(value).not.be.ok;
     });
 
-    it('merges a string into an object', function(){
-        var parsedObj = dots.parseObject('this.is.a.test', 5, {
-            this: {
-                is: {
-                    a: {
-                        party: 5
-                    }
-                }
+});
+
+describe('#inflate', function(){
+
+    it('parses a flat object into nests', function(){
+        var notatedObj = {
+            'this.is.a.test': 5
+        };
+
+        var obj = dots.inflate(notatedObj);
+
+        should(obj).be.ok;
+        should(obj).be.an.Object;
+        should(obj.this).be.ok;
+        should(obj.this).be.an.Object;
+        should(obj.this.is).be.ok;
+        should(obj.this.is).be.an.Object;
+        should(obj.this.is.a).be.ok;
+        should(obj.this.is.a).be.an.Object;
+        should(obj.this.is.a.test).be.ok;
+        should(obj.this.is.a.test).be.a.Number;
+        should(obj.this.is.a.test).eql(5);
+    });
+
+    it('parses multiple keys into nests', function(){
+        var notatedObj = {
+            'first.one': 5,
+            'second.one': 5
+        };
+
+        var obj = dots.inflate(notatedObj);
+
+        should(obj).be.ok;
+        should(obj).be.an.Object;
+        should(obj.first).be.ok;
+        should(obj.first).be.an.Object;
+        should(obj.first.one).be.ok;
+        should(obj.first.one).be.an.Number;
+        should(obj.first.one).eql(5);
+        should(obj.second).be.ok;
+        should(obj.second).be.an.Object;
+        should(obj.second.one).be.ok;
+        should(obj.second.one).be.a.Number;
+        should(obj.second.one).eql(5);
+    });
+
+    it('merges together multiple keys', function(){
+        var notatedObj = {
+            'test.one': 5,
+            'test.two': 5
+        };
+
+        var obj = dots.inflate(notatedObj);
+
+        should(obj).be.ok;
+        should(obj).be.an.Object;
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.one).be.ok;
+        should(obj.test.one).be.an.Number;
+        should(obj.test.one).eql(5);
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.two).be.ok;
+        should(obj.test.two).be.a.Number;
+        should(obj.test.two).eql(5);
+    });
+
+    it('merges together multiple keys', function(){
+        var notatedObj = {
+            'test.one': 5,
+            'test.two': 5
+        };
+
+        var obj = dots.inflate(notatedObj);
+
+        should(obj).be.ok;
+        should(obj).be.an.Object;
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.one).be.ok;
+        should(obj.test.one).be.an.Number;
+        should(obj.test.one).eql(5);
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.two).be.ok;
+        should(obj.test.two).be.a.Number;
+        should(obj.test.two).eql(5);
+    });
+
+    it('merges together multiple objects', function(){
+        var notatedObj = {
+            'test.one': 5
+        };
+
+        var obj = dots.inflate(notatedObj, {
+            test: {
+                two: 5
             }
         });
 
-        should(parsedObj).be.ok;
-        should(parsedObj).be.an.Object;
-        should(parsedObj.this).be.ok;
-        should(parsedObj.this).be.an.Object;
-        should(parsedObj.this.is).be.ok;
-        should(parsedObj.this.is).be.an.Object;
-        should(parsedObj.this.is.a).be.ok;
-        should(parsedObj.this.is.a).be.an.Object;
-        should(parsedObj.this.is.a.test).be.ok;
-        should(parsedObj.this.is.a.test).be.a.Number;
-        should(parsedObj.this.is.a.test).eql(5);
-        should(parsedObj.this.is.a.party).be.ok;
-        should(parsedObj.this.is.a.party).be.a.Number;
-        should(parsedObj.this.is.a.party).eql(5);
+        should(obj).be.ok;
+        should(obj).be.an.Object;
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.one).be.ok;
+        should(obj.test.one).be.an.Number;
+        should(obj.test.one).eql(5);
+        should(obj.test).be.ok;
+        should(obj.test).be.an.Object;
+        should(obj.test.two).be.ok;
+        should(obj.test.two).be.a.Number;
+        should(obj.test.two).eql(5);
     });
 
 });

@@ -42,7 +42,63 @@ The parser is quite generous in what it will accept, although certain forms are 
 
 ### APIs ###
 
-#### fromNotation(notatedObj[, obj]) ####
+#### create(str[, val[, obj]]) ####
+
+This method will take a dot notated string and convert it into an object, by populating either an existing object, or creating a new one. A second parameter can be provided to set the innermost field to a specific value. Similar to the `inflate` method, this method can accept an Object parameter to merge keys into.
+
+```
+var obj = dots.create('this.is.a.test', 5);
+
+// becomes
+
+var obj2 = {
+    this: {
+        is: {
+            a: {
+                test: 5
+            }
+        }
+    }
+}
+```
+
+#### get(str, obj) ####
+
+Simply returns a nested object value from a dot notated string. Used for easy access to a value. This is the counterpart to `create`.
+
+```
+var obj = {
+    this: {
+        is: {
+            a: {
+                test: 5
+            }
+        }
+    }
+}
+
+dots.get('this.is.a.test', obj); // 5
+```
+
+#### flatten(obj) ####
+
+Similar to the `inflate` method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot notated keys.
+
+```
+var obj = {
+    test: {
+        one: 5
+    }
+}
+
+// becomes
+
+var obj2 = {
+    'test.one': 5
+}
+```
+
+#### inflate(notatedObj[, obj]) ####
 
 This method will transform an object with flattened keys in the top level into the nested counterpart being represented by the keys. This method accepts a second parameter in order to merge keys over an existing object. If no object is provided, an empty one will be used.
 
@@ -60,42 +116,14 @@ var obj2 = {
 }
 ```
 
-#### toNotation(obj) ####
+#### keys(str) ####
 
-Similar to the above method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot notated keys.
-
-```
-var obj = {
-    test: {
-        one: 5
-    }
-}
-
-// becomes
-
-var obj2 = {
-    'test.one': 5
-}
-```
-
-#### parseObject(str[, val[, obj]]) ####
-
-This method will take a dot notated string and convert it into an object. A second parameter can be provided to set the innermost field to a specific value. Similar to the `fromNotation` method, this method can accept an Object parameter to merge keys into.
+Transforms a dot notated string to an array of keys. Useful for recursion. In order to provide distinction, array indexes will be of type `Number` and integer keys will be of type `String`. Invalid strings will throw a `ParseException`. 
 
 ```
-var obj = dots.parseObject('this.is.a.test', 5);
+var str = 'test[1].2["three"]';
 
-// becomes
-
-var obj2 = {
-    this: {
-        is: {
-            a: {
-                test: 5
-            }
-        }
-    }
-}
+dots.keys(str); // [ 'test', 1, '2', 'three' ] 
 ```
 
 ### Exceptions ###
