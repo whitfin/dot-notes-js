@@ -21,6 +21,7 @@
     "multistr"      : true,
     "node"          : true,
     "maxcomplexity" : false,
+    "shadow"        : true,
     "globals": {
         "describe"  : true,
         "it"        : true

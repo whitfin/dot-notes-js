@@ -118,12 +118,12 @@ var obj2 = {
 
 #### keys(str) ####
 
-Transforms a dot notated string to an array of keys. Useful for recursion. In order to provide distinction, array indexes will be of type `Number` and integer keys will be of type `String`. Invalid strings will throw a `ParseException`. 
+Transforms a dot notated string to an array of keys. Useful for recursion. In order to provide distinction, array indexes will be of type `Number` and integer keys will be of type `String`. Invalid strings will throw a `ParseException`.
 
 ```
 var str = 'test[1].2["three"]';
 
-dots.keys(str); // [ 'test', 1, '2', 'three' ] 
+dots.keys(str); // [ 'test', 1, '2', 'three' ]
 ```
 
 ### Exceptions ###
