@@ -1,6 +1,6 @@
 {
   "name": "dot-notes",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Two way conversions between objects and dot notation",
   "author": {
     "name": "Isaac Whitfield",
