@@ -12,7 +12,7 @@ This module provides a simple way of contructing/parsing dot/bracket notation in
 
 ### Compatibility
 
-`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.8.x - v4.x, and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
+`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.10.x - v4.x, and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
 
 ### Getting Started
 
