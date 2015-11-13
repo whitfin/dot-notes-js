@@ -1,7 +1,7 @@
 dot-notes [![Build Status](https://travis-ci.org/zackehh/dot-notes.svg?branch=master)](https://travis-ci.org/zackehh/dot-notes) [![Code Climate](https://codeclimate.com/github/zackehh/dot-notes/badges/gpa.svg)](https://codeclimate.com/github/zackehh/dot-notes) [![Test Coverage](https://codeclimate.com/github/zackehh/dot-notes/badges/coverage.svg)](https://codeclimate.com/github/zackehh/dot-notes)
 =========
 
-This module provides a simple way of contructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
+This module provides a simple way of constructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
 
 - [Compatibility](#compatibility)
 - [Getting Started](#setup)
@@ -43,7 +43,7 @@ dots.recurse({ "test": { "test": "example" } }, console.log);
 
 ### Migrating from 1.x to 2.x
 
-Please note that the API has changed somewhat in this bump, for both simplicity and flexibility. As such, the `flatten` and `inflate` functions are no longer available. However they can easily be implemented using the new `recurse` function. Please read the [https://github.com/zackehh/dot-notes/wiki/Migration-From-1.x-To-2.x] for information on how to use `recurse`.
+Please note that the API has changed somewhat in this bump, for both simplicity and flexibility. As such, the `flatten` and `inflate` functions are no longer available. However they can easily be implemented using the new `recurse` function. Please read the [documentation](https://github.com/zackehh/dot-notes/wiki/Migration-From-1.x-To-2.x) for information on how to use `recurse`.
 
 ### Contributing
 
