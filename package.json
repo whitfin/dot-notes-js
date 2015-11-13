@@ -1,46 +1,44 @@
 {
   "name": "dot-notes",
   "version": "1.1.1",
-  "description": "Two way conversions between objects and dot notation",
+  "description": "Two way conversions between objects and dot/bracket notation",
   "author": {
     "name": "Isaac Whitfield",
     "email": "iwhitfield@appcelerator.com"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/iwhitfield/dot-notes.git"
+    "url": "http://github.com/zackehh/dot-notes.git"
   },
-  "bugs": "http://github.com/iwhitfield/dot-notes/issues",
+  "bugs": "http://github.com/zackehh/dot-notes/issues",
   "license": "MIT",
   "readmeFilename": "README.md",
   "keywords": [
-    "converstion",
-    "dot-notation",
+    "accessor",
+    "conversion",
+    "bracket notation",
+    "dot notation",
     "objects",
-    "parsing"
+    "parsing",
+    "property"
   ],
   "devDependencies": {
-    "blanket": "1.1.6",
-    "codeclimate-test-reporter": "0.0.4",
-    "mocha": "2.1.0",
-    "mocha-lcov-reporter": "0.0.1",
-    "should": "5.0.0"
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-codeclimate-reporter": "1.2.0",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-jscs": "2.3.0",
+    "grunt-mocha-istanbul": "3.0.1",
+    "grunt-mocha-test": "0.12.7",
+    "istanbul": "0.4.0",
+    "jshint": "2.8.0",
+    "mocha": "2.3.3",
+    "should": "7.1.1"
   },
   "scripts": {
-    "coverage": "mocha -r blanket -R html-cov test",
-    "lcov": "mocha -r blanket -R mocha-lcov-reporter",
-    "test": "mocha test"
-  },
-  "config": {
-    "blanket": {
-      "data-cover-never": [
-        "node_modules",
-        "test"
-      ],
-      "pattern": [
-        "lib/dot.notes.js",
-        "lib/util.js"
-      ]
-    }
+    "coverage": "grunt coverage",
+    "lint": "grunt lint",
+    "test": "grunt test"
   }
 }

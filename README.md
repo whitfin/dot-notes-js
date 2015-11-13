@@ -1,135 +1,62 @@
-dot-notes [![Build Status](https://travis-ci.org/iwhitfield/dot-notes.svg?branch=master)](https://travis-ci.org/iwhitfield/dot-notes) [![Code Climate](https://codeclimate.com/github/iwhitfield/dot-notes/badges/gpa.svg)](https://codeclimate.com/github/iwhitfield/dot-notes) [![Test Coverage](https://codeclimate.com/github/iwhitfield/dot-notes/badges/coverage.svg)](https://codeclimate.com/github/iwhitfield/dot-notes)
+dot-notes [![Build Status](https://travis-ci.org/zackehh/dot-notes.svg?branch=master)](https://travis-ci.org/zackehh/dot-notes) [![Code Climate](https://codeclimate.com/github/zackehh/dot-notes/badges/gpa.svg)](https://codeclimate.com/github/zackehh/dot-notes) [![Test Coverage](https://codeclimate.com/github/zackehh/dot-notes/badges/coverage.svg)](https://codeclimate.com/github/zackehh/dot-notes)
 =========
 
-- [Setup](#setup)
-- [Notation](#notation)
-- [How Does It Work?](#apis)
-- [Invalid Syntax](#exceptions)
-- [Issues](#issues)
+This module provides a simple way of contructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
 
-This module provides a simple way to convert between JavaScript objects and dot notation (see below). In terms of compatibility, `dot-notes` is built on [TravisCI](https://travis-ci.org/iwhitfield/dot-notes) after every commit using Node v0.8.x, 0.10.x, 0.12.x. In addition to this, the latest version of io.js is also covered in these builds. Build results are submitted to [Code Climate](https://codeclimate.com/github/iwhitfield/dot-notes) for analysis.
+- [Compatibility](#compatibility)
+- [Getting Started](#setup)
+- [Quick Examples](#quick-examples)
+- [Migrating from 1.x to 2.x](#migrating-from-1x-to-2x)
+- [Contributing](#contributing)
+- [Testing](#testing)
 
-### Setup ###
+### Compatibility
 
-`dot-notes` is available on [npm](https://www.npmjs.com/package/dot-notes), so simply install it:
+`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.8.x - v4.x, and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
 
-```
-$ npm install dot-notes
-```
+### Getting Started
 
-### Notation ###
+`dot-notes` lives on [npm](https://www.npmjs.com/package/dot-notes), so just install it via the command line and you're good to go. There are no dependencies either, so it should be pretty fast to download in your production environment (there *are* dev dependencies).
 
-This module follows the following notations:
 
-```
-// Any key may be referenced via dot separators
-test.one
-
-// Array elements must be wrapped in square brackets
-test.one[1]
-
-// Keys with special characters much go in quotes, in square brackets
-test.one[1]['my.test']
-
-// Quotes can be either double or single, as long as they match
-test.one[1]["my.test"]
-
-// Should you wish to, you can place normal field names in this form
-test['one']
+```bash
+$ npm install --save dot-notes
 ```
 
-The parser is quite generous in what it will accept, although certain forms are blocked on purpose due to bad practice (e.g. `test[key]`). If your dot notation does not work correctly, `ParseException` will be thrown.
+In the interest of short READMEs, please visit the wiki for [documentation](https://github.com/zackehh/dot-notes/wiki) on how to use this module, including example usage.
 
-### APIs ###
+### Quick Examples
 
-#### create(str[, val[, obj]]) ####
+```javascript
+var dots = require('dot-notes');
 
-This method will take a dot notated string and convert it into an object, by populating either an existing object, or creating a new one. A second parameter can be provided to set the innermost field to a specific value. Similar to the `inflate` method, this method can accept an Object parameter to merge keys into.
-
-```
-var obj = dots.create('this.is.a.test', 5);
-
-// becomes
-
-var obj2 = {
-    this: {
-        is: {
-            a: {
-                test: 5
-            }
-        }
-    }
-}
-```
-
-#### get(str, obj) ####
-
-Simply returns a nested object value from a dot notated string. Used for easy access to a value. This is the counterpart to `create`.
+dots.create('test.test', 'example', {});
+  => { "test": { "test": "example" } }
+dots.get('test.test', { "test": { "test": "example" } });
+  => "example"
+dots.keys('this["is"].my[1].example');
+  => [ 'this', 'is', 'my', 1, 'example' ]
+dots.recurse({ "test": { "test": "example" } }, console.log);
+  => [ 'test', 'example', 'test.test' ]
 
 ```
-var obj = {
-    this: {
-        is: {
-            a: {
-                test: 5
-            }
-        }
-    }
-}
 
-dots.get('this.is.a.test', obj); // 5
+### Migrating from 1.x to 2.x
+
+Please note that the API has changed somewhat in this bump, for both simplicity and flexibility. As such, the `flatten` and `inflate` functions are no longer available. However they can easily be implemented using the new `recurse` function. Please read the [https://github.com/zackehh/dot-notes/wiki/Migration-From-1.x-To-2.x] for information on how to use `recurse`.
+
+### Contributing
+
+If you wish to contribute (awesome!), please file an issue before filing a PR in order to avoid wasting time on a PR which may not be required. All PRs should pass `grunt lint` and maintain 100% test coverage. If something isn't covered by `lint`, please just use the existing code as an example of the style which should be used.
+
+### Testing
+
+Tests are run using `grunt` or `npm`, and written using [Mocha](https://mochajs.org/). I aim to maintain 100% coverage where possible (both line and branch).
+
+Tests can be run as follows:
+
+```bash
+$ npm test
+$ grunt test
+$ grunt # runs the default Travis loop
 ```
-
-#### flatten(obj) ####
-
-Similar to the `inflate` method, but in reverse. This method will take a nested object and flatten it down to a single level, with dot notated keys.
-
-```
-var obj = {
-    test: {
-        one: 5
-    }
-}
-
-// becomes
-
-var obj2 = {
-    'test.one': 5
-}
-```
-
-#### inflate(notatedObj[, obj]) ####
-
-This method will transform an object with flattened keys in the top level into the nested counterpart being represented by the keys. This method accepts a second parameter in order to merge keys over an existing object. If no object is provided, an empty one will be used.
-
-```
-var obj = {
-    'test.one': 5
-}
-
-// becomes
-
-var obj2 = {
-    test: {
-        one: 5
-    }
-}
-```
-
-#### keys(str) ####
-
-Transforms a dot notated string to an array of keys. Useful for recursion. In order to provide distinction, array indexes will be of type `Number` and integer keys will be of type `String`. Invalid strings will throw a `ParseException`.
-
-```
-var str = 'test[1].2["three"]';
-
-dots.keys(str); // [ 'test', 1, '2', 'three' ]
-```
-
-### Exceptions ###
-
-There is very basic exception handling should an invalid syntax be used. Should this occur, a `ParseException` will be thrown, with an (attempted) reference to where the error is in the string.
-
-### Issues ###
-
-If you find any issues inside this module, feel free to open an issue [here](https://github.com/iwhitfield/dot-notes/issues "dot-notes Issues").
