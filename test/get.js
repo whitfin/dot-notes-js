@@ -231,7 +231,7 @@ describe('#get', function () {
     it('throws an error when provided an invalid key', function () {
       should.throws(
         function () {
-          dots.get('123');
+          dots.get('123', { });
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
@@ -243,7 +243,9 @@ describe('#get', function () {
 
     it('throws an error when provided a missing key', function () {
       should.throws(
-        dots.get,
+        function () {
+          dots.get(undefined, { });
+        },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
           should(err.message).eql('Unable to parse empty string!');
