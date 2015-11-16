@@ -33,6 +33,22 @@ describe('#keys', function () {
       should(keys[1]).eql('test');
     });
 
+    it('translates a basic key with numbers', function () {
+      var keys = dots.keys('test.test1');
+
+      should(keys).be.ok();
+      should(keys).be.an.Array();
+      should(keys).have.lengthOf(2);
+
+      should(keys[0]).be.ok();
+      should(keys[0]).be.a.String();
+      should(keys[0]).eql('test');
+
+      should(keys[1]).be.ok();
+      should(keys[1]).be.a.String();
+      should(keys[1]).eql('test1');
+    });
+
     it('translates an array key', function () {
       var keys = dots.keys('[0]');
 
