@@ -6,7 +6,7 @@ describe('#create', function () {
   describe('positive tests', function () {
 
     it('creates a basic key', function () {
-      var parsedObj = dots.create('test', 5);
+      var parsedObj = dots.create({}, 'test', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -17,7 +17,7 @@ describe('#create', function () {
     });
 
     it('creates a basic nested key', function () {
-      var parsedObj = dots.create('test.test', 5);
+      var parsedObj = dots.create({}, 'test.test', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -31,7 +31,7 @@ describe('#create', function () {
     });
 
     it('creates an array key', function () {
-      var parsedArr = dots.create('[0]', 5);
+      var parsedArr = dots.create([], '[0]', 5);
 
       should(parsedArr).be.ok();
       should(parsedArr).be.an.Array();
@@ -42,7 +42,7 @@ describe('#create', function () {
     });
 
     it('creates a nested array key', function () {
-      var parsedArr = dots.create('[0][0]', 5);
+      var parsedArr = dots.create([], '[0][0]', 5);
 
       should(parsedArr).be.ok();
       should(parsedArr).be.an.Array();
@@ -56,7 +56,7 @@ describe('#create', function () {
     });
 
     it('creates a basic key under an array key', function () {
-      var parsedArr = dots.create('[0].test', 5);
+      var parsedArr = dots.create([], '[0].test', 5);
 
       should(parsedArr).be.ok();
       should(parsedArr).be.an.Array();
@@ -70,7 +70,7 @@ describe('#create', function () {
     });
 
     it('creates an array key under a basic key', function () {
-      var parsedObj = dots.create('test[0]', 5);
+      var parsedObj = dots.create({}, 'test[0]', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -86,7 +86,7 @@ describe('#create', function () {
     describe('creates a compound key', function () {
 
       it('using single quotes', function () {
-        var parsedObj = dots.create('[\'test\']', 5);
+        var parsedObj = dots.create({}, '[\'test\']', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -97,7 +97,7 @@ describe('#create', function () {
       });
 
       it('using double quotes', function () {
-        var parsedObj = dots.create('["test"]', 5);
+        var parsedObj = dots.create({}, '["test"]', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -112,7 +112,7 @@ describe('#create', function () {
     describe('creates a basic key under a compound key', function () {
 
       it('using single quotes', function () {
-        var parsedObj = dots.create('[\'test\'].test', 5);
+        var parsedObj = dots.create({}, '[\'test\'].test', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -126,7 +126,7 @@ describe('#create', function () {
       });
 
       it('using double quotes', function () {
-        var parsedObj = dots.create('["test"].test', 5);
+        var parsedObj = dots.create({}, '["test"].test', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -144,7 +144,7 @@ describe('#create', function () {
     describe('creates an array key under a compound key', function () {
 
       it('using single quotes', function () {
-        var parsedObj = dots.create('[\'test\'][0]', 5);
+        var parsedObj = dots.create({}, '[\'test\'][0]', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -158,7 +158,7 @@ describe('#create', function () {
       });
 
       it('using double quotes', function () {
-        var parsedObj = dots.create('["test"][0]', 5);
+        var parsedObj = dots.create({}, '["test"][0]', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -176,7 +176,7 @@ describe('#create', function () {
     describe('creates an integer key', function () {
 
       it('using single quotes', function () {
-        var parsedObj = dots.create('[\'10\']', 5);
+        var parsedObj = dots.create({}, '[\'10\']', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -187,7 +187,7 @@ describe('#create', function () {
       });
 
       it('using double quotes', function () {
-        var parsedObj = dots.create('["10"]', 5);
+        var parsedObj = dots.create({}, '["10"]', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -202,7 +202,7 @@ describe('#create', function () {
     describe('creates a special key', function () {
 
       it('using single quotes', function () {
-        var parsedObj = dots.create('[\']]][[[\']', 5);
+        var parsedObj = dots.create({}, '[\']]][[[\']', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -213,7 +213,7 @@ describe('#create', function () {
       });
 
       it('using double quotes', function () {
-        var parsedObj = dots.create('["]]][[["]', 5);
+        var parsedObj = dots.create({}, '["]]][[["]', 5);
 
         should(parsedObj).be.ok();
         should(parsedObj).be.an.Object();
@@ -226,9 +226,9 @@ describe('#create', function () {
     });
 
     it('creates a missing key in an object', function () {
-      var parsedObj = dots.create('dance', 5, {
+      var parsedObj = dots.create({
         sing: 10
-      });
+      }, 'dance', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -243,9 +243,9 @@ describe('#create', function () {
     });
 
     it('creates an existing key in an object', function () {
-      var parsedObj = dots.create('dance', 5, {
+      var parsedObj = dots.create({
         dance: 10
-      });
+      }, 'dance', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -256,11 +256,11 @@ describe('#create', function () {
     });
 
     it('creates an existing nested key in an object', function () {
-      var parsedObj = dots.create('dance.dance', 5, {
+      var parsedObj = dots.create({
         dance: {
           dance: 10
         }
-      });
+      }, 'dance.dance', 5);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -274,7 +274,7 @@ describe('#create', function () {
     });
 
     it('creates a key with a null value', function () {
-      var parsedObj = dots.create('dance', null);
+      var parsedObj = dots.create({}, 'dance', null);
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -283,7 +283,7 @@ describe('#create', function () {
     });
 
     it('creates a key with an undefined value', function () {
-      var parsedObj = dots.create('dance');
+      var parsedObj = dots.create({}, 'dance');
 
       should(parsedObj).be.ok();
       should(parsedObj).be.an.Object();
@@ -295,10 +295,29 @@ describe('#create', function () {
 
   describe('negative tests', function () {
 
+    it('handles non-object haystacks successfully', function () {
+      var parsedObj = dots.create('dance', 'dance', 'dance');
+
+      should(parsedObj).be.ok();
+      should(parsedObj).be.an.Object();
+      should(parsedObj).have.property('dance');
+      should(parsedObj.dance).eql('dance');
+    });
+
+    it('handles non-array haystacks successfully', function () {
+      var parsedObj = dots.create('dance', '[0]', 'dance');
+
+      should(parsedObj).be.ok();
+      should(parsedObj).be.an.Array();
+      should(parsedObj.length).eql(1);
+      should(parsedObj[0]).be.a.String();
+      should(parsedObj[0]).eql('dance');
+    });
+
     it('throws an error when provided an invalid key', function () {
       should.throws(
         function () {
-          dots.create('123');
+          dots.create({}, '123');
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);

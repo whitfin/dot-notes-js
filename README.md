@@ -12,12 +12,11 @@ This module provides a simple way of constructing/parsing dot/bracket notation i
 
 ### Compatibility
 
-`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.10.x - v4.x, and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
+`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.10.x -> stable and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
 
 ### Getting Started
 
 `dot-notes` lives on [npm](https://www.npmjs.com/package/dot-notes), so just install it via the command line and you're good to go. There are no dependencies either, so it should be pretty fast to download in your production environment (there *are* dev dependencies).
-
 
 ```bash
 $ npm install --save dot-notes
@@ -41,9 +40,13 @@ dots.recurse({ "test": { "test": "example" } }, console.log);
 
 ```
 
-### Migrating from 1.x to 2.x
+### Migrating from 2.x to 3.x
 
-Please note that the API has changed somewhat in this bump, for both simplicity and flexibility. As such, the `flatten` and `inflate` functions are no longer available. However they can easily be implemented using the new `recurse` function. Please read the [documentation](https://github.com/zackehh/dot-notes/wiki/Migration-From-1.x-To-2.x) for information on how to use `recurse`.
+The argument syntax for any functions taking an Object target and a String have been flipped, to follow the `(haystack, needle)` format. This means that the arguments for a target are now required where they weren't previously - *however*, if you pass undefined you will get the same behaviour as previously.
+
+Check out [this quick example](https://github.com/zackehh/dot-notes/wiki/Migration-From-2.x-To-3.x) for an example of the API change.
+
+This is the only non-backwards compatible change in 3.x (and is the change which forced the jump to 3.0.0).
 
 ### Contributing
 
