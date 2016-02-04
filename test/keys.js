@@ -369,7 +369,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'1\' at column 6!');
+          should(err.message).eql('Unable to parse \'test.1\' at character \'1\', column 6!');
           return true;
         }
       );
@@ -382,7 +382,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'[\' at column 6!');
+          should(err.message).eql('Unable to parse \'test.["test"]\' at character \'[\', column 6!');
           return true;
         }
       );
@@ -395,7 +395,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'[\' at column 6!');
+          should(err.message).eql('Unable to parse \'test.[0]\' at character \'[\', column 6!');
           return true;
         }
       );
@@ -408,7 +408,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'t\' at column 6!');
+          should(err.message).eql('Unable to parse \'test[test]\' at character \'t\', column 6!');
           return true;
         }
       );
@@ -421,7 +421,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key with trailing dot!');
+          should(err.message).eql('Unable to parse \'test.\' due to trailing dot!');
           return true;
         }
       );
@@ -434,7 +434,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key with trailing bracket!');
+          should(err.message).eql('Unable to parse \'test[\' due to trailing bracket!');
           return true;
         }
       );
@@ -447,7 +447,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'[\' at column 1!');
+          should(err.message).eql('Unable to parse \'["test]\' at character \'[\', column 1!');
           return true;
         }
       );
@@ -460,7 +460,7 @@ describe('#keys', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'.\' at column 6!');
+          should(err.message).eql('Unable to parse \'test..test\' at character \'.\', column 6!');
           return true;
         }
       );

@@ -13,13 +13,13 @@ describe('ParseException', function () {
 
         should(err.message).be.ok();
         should(err.message).be.a.String();
-        should(err.message).eql('Unable to parse key starting with \'.\' at column 6!');
+        should(err.message).eql('Unable to parse \'test..test\' at character \'.\', column 6!');
 
         should(err.stack).be.ok();
 
         var lines = err.stack.split('\n');
 
-        should(lines[0]).eql('ParseException: Unable to parse key starting with \'.\' at column 6!');
+        should(lines[0]).eql('ParseException: Unable to parse \'test..test\' at character \'.\', column 6!');
         should(lines[1]).startWith('    at Object.keys');
 
         return true;
@@ -40,13 +40,13 @@ describe('ParseException', function () {
         should(err).be.an.instanceOf(dots.ParseException);
         should(err.message).be.ok();
         should(err.message).be.a.String();
-        should(err.message).eql('Unable to parse key starting with \'.\' at column 6!');
+        should(err.message).eql('Unable to parse \'test..test\' at character \'.\', column 6!');
 
         should(err.stack).be.ok();
 
         var lines = err.stack.split('\n');
 
-        should(lines[0]).eql('ParseException: Unable to parse key starting with \'.\' at column 6!');
+        should(lines[0]).eql('ParseException: Unable to parse \'test..test\' at character \'.\', column 6!');
         should(lines[1]).startWith('    at Object.keys');
 
         return true;

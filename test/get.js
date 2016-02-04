@@ -235,7 +235,7 @@ describe('#get', function () {
         },
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to parse key starting with \'1\' at column 1!');
+          should(err.message).eql('Unable to parse \'123\' at character \'1\', column 1!');
           return true;
         }
       );
