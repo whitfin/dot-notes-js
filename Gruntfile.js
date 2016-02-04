@@ -24,6 +24,8 @@ module.exports = function (grunt) {
         ],
         src: [
           'test/create.js',
+          'test/escape.js',
+          'test/escaped.js',
           'test/get.js',
           'test/keys.js',
           'test/recurse.js',
@@ -40,6 +42,8 @@ module.exports = function (grunt) {
       },
       src: [
         'test/create.js',
+        'test/escape.js',
+        'test/escaped.js',
         'test/get.js',
         'test/keys.js',
         'test/recurse.js',
