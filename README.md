@@ -44,8 +44,6 @@ dots.recurse({ "test": { "test": "example" } }, console.log);
 
 The argument syntax for any functions taking an Object target and a String have been flipped, to follow the `(haystack, needle)` format. This means that the arguments for a target are now required where they weren't previously - *however*, if you pass undefined you will get the same behaviour as previously.
 
-Check out [this quick example](https://github.com/zackehh/dot-notes/wiki/Migration-From-2.x-To-3.x) for an example of the API change.
-
 This is the only non-backwards compatible change in 3.x (and is the change which forced the jump to 3.0.0).
 
 ### Contributing
