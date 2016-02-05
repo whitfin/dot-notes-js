@@ -6,7 +6,7 @@ This module provides a simple way of constructing/parsing dot/bracket notation i
 - [Compatibility](#compatibility)
 - [Getting Started](#setup)
 - [Quick Examples](#quick-examples)
-- [Migrating from 1.x to 2.x](#migrating-from-1x-to-2x)
+- [Migrating from 2.x to 3.x](#migrating-from-2x-to-3x)
 - [Contributing](#contributing)
 - [Testing](#testing)
 
