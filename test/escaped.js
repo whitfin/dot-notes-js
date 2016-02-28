@@ -33,6 +33,13 @@ describe('#isEscaped', function () {
       should(escaped).eql(true);
     });
 
+    it('returns true for a blank key', function () {
+      var escaped = dots.isEscaped('[""]');
+
+      should(escaped).be.ok();
+      should(escaped).eql(true);
+    });
+
     it('returns false for an empty key', function () {
       var escaped = dots.isEscaped('');
 

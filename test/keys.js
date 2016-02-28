@@ -109,6 +109,22 @@ describe('#keys', function () {
       should(keys[1]).eql(0);
     });
 
+    it('translates a blank key', function () {
+      var keys = dots.keys('test[""]');
+
+      should(keys).be.ok();
+      should(keys).be.an.Array();
+      should(keys).have.lengthOf(2);
+
+      should(keys[0]).not.be.undefined();
+      should(keys[0]).be.a.String();
+      should(keys[0]).eql('test');
+
+      should(keys[1]).not.be.undefined();
+      should(keys[1]).be.a.String();
+      should(keys[1]).eql('');
+    });
+
     describe('translates a compound key', function () {
 
       it('using single quotes', function () {

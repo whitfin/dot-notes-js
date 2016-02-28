@@ -53,6 +53,14 @@ describe('#escape', function () {
       should(escaped).eql('["\\"test\\""]');
     });
 
+    it('escapes an empty key', function () {
+      var escaped = dots.escape('');
+
+      should(escaped).be.ok();
+      should(escaped).be.a.String();
+      should(escaped).eql('[""]');
+    });
+
   });
 
   describe('negative tests', function () {
@@ -62,7 +70,7 @@ describe('#escape', function () {
         dots.escape,
         function (err) {
           should(err).be.an.instanceOf(dots.ParseException);
-          should(err.message).eql('Unable to escape empty string!');
+          should(err.message).eql('Unexpected non-string value provided!');
           return true;
         }
       );
