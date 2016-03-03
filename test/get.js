@@ -225,7 +225,7 @@ describe('#get', function () {
       var value = dots.get({ test: { test: null } }, 'test.test.test');
 
       should(value).not.be.ok();
-      should(value).be.undefined();
+      should(value).be.null();
     });
 
     it('throws an error when provided an invalid key', function () {
