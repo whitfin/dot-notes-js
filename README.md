@@ -29,9 +29,9 @@ In the interest of short READMEs, please visit the wiki for [documentation](http
 ```javascript
 var dots = require('dot-notes');
 
-dots.create('test.test', 'example', {});
+dots.create({}, 'test.test', 'example');
   => { "test": { "test": "example" } }
-dots.get('test.test', { "test": { "test": "example" } });
+dots.get({ "test": { "test": "example" } }, 'test.test');
   => "example"
 dots.keys('this["is"].my[1].example');
   => [ 'this', 'is', 'my', 1, 'example' ]
