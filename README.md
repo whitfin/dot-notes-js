@@ -30,6 +30,8 @@ dots.get('test.test', { "test": { "test": "example" } });
   => "example"
 dots.keys('this["is"].my[1].example');
   => [ 'this', 'is', 'my', 1, 'example' ]
+dots.join([ 'this', 'is', 'my', 1, 'example' ]);
+  => 'this.is.my[1].example'
 dots.recurse({ "test": { "test": "example" } }, console.log);
   => [ 'test', 'example', 'test.test' ]
 
