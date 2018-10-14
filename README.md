@@ -1,5 +1,4 @@
-# dot-notes
-[![Unix Build Status](https://img.shields.io/travis/whitfin/dot-notes-js.svg?label=unix)](https://travis-ci.org/whitfin/dot-notes-js) [![Windows Build Status](https://img.shields.io/appveyor/ci/whitfin/dot-notes-js.svg?label=win)](https://ci.appveyor.com/project/whitfin/dot-notes-js)
+# dot-notes [![Build Status](https://img.shields.io/travis/whitfin/dot-notes-js.svg)](https://travis-ci.org/whitfin/dot-notes-js)
 
 This module provides a simple way of constructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
 
