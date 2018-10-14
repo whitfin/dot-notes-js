@@ -4,12 +4,12 @@ os:
   - linux
   - osx
 node_js:
-  - "stable"
+  - "10"
   - "8"
   - "6"
   - "4"
 matrix:
   include:
-    - node_js: "stable"
+    - node_js: "10"
       script:
         - npm run lint
