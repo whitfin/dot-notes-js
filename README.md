@@ -3,16 +3,11 @@
 
 This module provides a simple way of constructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
 
-- [Compatibility](#compatibility)
 - [Getting Started](#setup)
 - [Quick Examples](#quick-examples)
 - [Migrating from 2.x to 3.x](#migrating-from-2x-to-3x)
 - [Contributing](#contributing)
 - [Testing](#testing)
-
-### Compatibility
-
-`dot-notes` is built on [TravisCI](https://travis-ci.org/zackehh/dot-notes) on every commit using Node v0.10.x -> stable and I intend to maintain compatibility with all of these versions (due to dot-notes being pure JavaScript at this point). After each build, all results are sent to [Code Climate](https://codeclimate.com/github/zackehh/dot-notes) for analysis.
 
 ### Getting Started
 
