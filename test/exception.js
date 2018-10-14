@@ -1,9 +1,9 @@
-const dots = require('../');
-const should = require('should');
+var dots = require('../');
+var should = require('should');
 
-describe('ParseException', function () {
+suite('ParseException', function () {
 
-  it('with the captureStackTrace API', function () {
+  test('with the captureStackTrace API', function () {
     should.throws(
       function () {
         dots.keys('test..test');
@@ -27,7 +27,7 @@ describe('ParseException', function () {
     );
   });
 
-  it('without the captureStackTrace API', function () {
+  test('without the captureStackTrace API', function () {
     var st = Error.captureStackTrace;
 
     delete Error.captureStackTrace;

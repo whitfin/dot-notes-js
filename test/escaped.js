@@ -1,74 +1,74 @@
-const dots = require('../');
-const should = require('should');
+var dots = require('../');
+var should = require('should');
 
-describe('#isEscaped', function () {
+suite('#isEscaped', function () {
 
-  describe('positive tests', function () {
+  suite('positive tests', function () {
 
-    it('returns true for a basic key', function () {
+    test('returns true for a basic key', function () {
       var escaped = dots.isEscaped('test');
 
       should(escaped).be.ok();
       should(escaped).eql(true);
     });
 
-    it('returns true for an array key', function () {
+    test('returns true for an array key', function () {
       var escaped = dots.isEscaped('[0]');
 
       should(escaped).be.ok();
       should(escaped).eql(true);
     });
 
-    it('returns true for a single quoted key', function () {
+    test('returns true for a single quoted key', function () {
       var escaped = dots.isEscaped('[\'test\']');
 
       should(escaped).be.ok();
       should(escaped).eql(true);
     });
 
-    it('returns true for a double quoted key', function () {
+    test('returns true for a double quoted key', function () {
       var escaped = dots.isEscaped('["test"]');
 
       should(escaped).be.ok();
       should(escaped).eql(true);
     });
 
-    it('returns true for a blank key', function () {
+    test('returns true for a blank key', function () {
       var escaped = dots.isEscaped('[""]');
 
       should(escaped).be.ok();
       should(escaped).eql(true);
     });
 
-    it('returns false for an empty key', function () {
+    test('returns false for an empty key', function () {
       var escaped = dots.isEscaped('');
 
       should(escaped).not.be.ok();
       should(escaped).eql(false);
     });
 
-    it('returns false for a numeric key', function () {
+    test('returns false for a numeric key', function () {
       var escaped = dots.isEscaped('5');
 
       should(escaped).not.be.ok();
       should(escaped).eql(false);
     });
 
-    it('returns false for a special key', function () {
+    test('returns false for a special key', function () {
       var escaped = dots.isEscaped('my-test');
 
       should(escaped).not.be.ok();
       should(escaped).eql(false);
     });
 
-    it('returns false for a single quoted key', function () {
+    test('returns false for a single quoted key', function () {
       var escaped = dots.isEscaped('\'test\'');
 
       should(escaped).not.be.ok();
       should(escaped).eql(false);
     });
 
-    it('returns false for a double quoted key', function () {
+    test('returns false for a double quoted key', function () {
       var escaped = dots.isEscaped('"test"');
 
       should(escaped).not.be.ok();
@@ -77,16 +77,16 @@ describe('#isEscaped', function () {
 
   });
 
-  describe('negative tests', function () {
+  suite('negative tests', function () {
 
-    it('returns false when provided a missing key', function () {
+    test('returns false when provided a missing key', function () {
       var escaped = dots.isEscaped();
 
       should(escaped).not.be.ok();
       should(escaped).eql(false);
     });
 
-    it('throws an error when provided a non-string', function () {
+    test('throws an error when provided a non-string', function () {
       var escaped = dots.isEscaped(5);
 
       should(escaped).not.be.ok();

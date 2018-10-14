@@ -1,11 +1,11 @@
-const dots = require('../');
-const should = require('should');
+var dots = require('../');
+var should = require('should');
 
-describe('#recurse', function () {
+suite('#recurse', function () {
 
-  describe('positive tests', function () {
+  suite('positive tests', function () {
 
-    it('iterates a set of basic keys', function () {
+    test('iterates a set of basic keys', function () {
       var obj = {
         one: 1,
         two: 2,
@@ -35,7 +35,7 @@ describe('#recurse', function () {
       should(iterator).eql(keys.length);
     });
 
-    it('iterates a set of array keys', function () {
+    test('iterates a set of array keys', function () {
       var arr = [ 1 ];
 
       var iterator = 0;
@@ -59,9 +59,9 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates a set of integer keys', function () {
+    test('iterates a set of integer keys', function () {
       var obj = {
-        '1': 1
+        1: 1
       };
 
       var iterator = 0;
@@ -91,7 +91,7 @@ describe('#recurse', function () {
       should(iterator).eql(keys.length);
     });
 
-    it('iterates a set of special keys', function () {
+    test('iterates a set of special keys', function () {
       var obj = {
         '][': 1,
         '"': 2,
@@ -127,7 +127,7 @@ describe('#recurse', function () {
       should(iterator).eql(keys.length);
     });
 
-    it('iterates an object recursively', function () {
+    test('iterates an object recursively', function () {
       var obj = {
         test: {
           nested: {
@@ -157,7 +157,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates an array recursively', function () {
+    test('iterates an array recursively', function () {
       var arr = [
         [ 1 ]
       ];
@@ -183,7 +183,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates nested arrays and objects recursively', function () {
+    test('iterates nested arrays and objects recursively', function () {
       var obj = {
         array: [
           {
@@ -191,7 +191,7 @@ describe('#recurse', function () {
               nested: [
                 {
                   recursion: {
-                    '0': 1
+                    0: 1
                   }
                 }
               ]
@@ -221,7 +221,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates through undefined values', function () {
+    test('iterates through undefined values', function () {
       var obj = {
         test: undefined
       };
@@ -245,7 +245,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates through null values', function () {
+    test('iterates through null values', function () {
       var obj = {
         test: null
       };
@@ -269,7 +269,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates using a custom prefix', function () {
+    test('iterates using a custom prefix', function () {
       var obj = {
         test: null
       };
@@ -293,7 +293,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('iterates without generating paths', function () {
+    test('iterates without generating paths', function () {
       var obj = {
         test: 1
       };
@@ -320,9 +320,9 @@ describe('#recurse', function () {
 
   });
 
-  describe('negative tests', function () {
+  suite('negative tests', function () {
 
-    it('does not iterate values on the object prototype', function () {
+    test('does not iterate values on the object prototype', function () {
       function O() { }
 
       Object.defineProperty(O.prototype, 'foo', {
@@ -339,7 +339,7 @@ describe('#recurse', function () {
       should(iterator).eql(0);
     });
 
-    it('ignores invalid custom prefixes', function () {
+    test('ignores invalid custom prefixes', function () {
       var obj = {
         test: null
       };
@@ -363,7 +363,7 @@ describe('#recurse', function () {
       should(iterator).eql(1);
     });
 
-    it('throws an error when provided a non-object', function () {
+    test('throws an error when provided a non-object', function () {
       should.throws(
         function () {
           dots.recurse(5, function () { });

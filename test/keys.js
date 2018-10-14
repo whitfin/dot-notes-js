@@ -1,12 +1,13 @@
-const dots = require('../');
-const should = require('should');
+var dots = require('../');
+var should = require('should');
 
-describe('#keys', function () {
+suite('#keys', function () {
 
-  describe('positive tests', function () {
+  suite('positive tests', function () {
 
-    it('translates a basic key', function () {
+    test('translates a basic key', function () {
       var keys = dots.keys('test');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -15,10 +16,13 @@ describe('#keys', function () {
       should(keys[0]).be.ok();
       should(keys[0]).be.a.String();
       should(keys[0]).eql('test');
+
+      should(join).eql('test');
     });
 
-    it('translates a basic nested key', function () {
+    test('translates a basic nested key', function () {
       var keys = dots.keys('test.test');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -31,10 +35,13 @@ describe('#keys', function () {
       should(keys[1]).be.ok();
       should(keys[1]).be.a.String();
       should(keys[1]).eql('test');
+
+      should(join).eql('test.test');
     });
 
-    it('translates a basic key with numbers', function () {
+    test('translates a basic key with numbers', function () {
       var keys = dots.keys('test.test1');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -47,10 +54,13 @@ describe('#keys', function () {
       should(keys[1]).be.ok();
       should(keys[1]).be.a.String();
       should(keys[1]).eql('test1');
+
+      should(join).eql('test.test1');
     });
 
-    it('translates an array key', function () {
+    test('translates an array key', function () {
       var keys = dots.keys('[0]');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -59,10 +69,13 @@ describe('#keys', function () {
       should(keys[0]).not.be.undefined();
       should(keys[0]).be.a.Number();
       should(keys[0]).eql(0);
+
+      should(join).eql('[0]');
     });
 
-    it('translates a nested array key', function () {
+    test('translates a nested array key', function () {
       var keys = dots.keys('[0][0]');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -75,10 +88,13 @@ describe('#keys', function () {
       should(keys[1]).not.be.undefined();
       should(keys[1]).be.a.Number();
       should(keys[1]).eql(0);
+
+      should(join).eql('[0][0]');
     });
 
-    it('translates a basic key under an array key', function () {
+    test('translates a basic key under an array key', function () {
       var keys = dots.keys('[0].test');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -91,10 +107,13 @@ describe('#keys', function () {
       should(keys[1]).not.be.undefined();
       should(keys[1]).be.a.String();
       should(keys[1]).eql('test');
+
+      should(join).eql('[0].test');
     });
 
-    it('translates an array key under a basic key', function () {
+    test('translates an array key under a basic key', function () {
       var keys = dots.keys('test[0]');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -107,10 +126,13 @@ describe('#keys', function () {
       should(keys[1]).not.be.undefined();
       should(keys[1]).be.a.Number();
       should(keys[1]).eql(0);
+
+      should(join).eql('test[0]');
     });
 
-    it('translates a blank key', function () {
+    test('translates a blank key', function () {
       var keys = dots.keys('test[""]');
+      var join = dots.join(keys);
 
       should(keys).be.ok();
       should(keys).be.an.Array();
@@ -123,12 +145,15 @@ describe('#keys', function () {
       should(keys[1]).not.be.undefined();
       should(keys[1]).be.a.String();
       should(keys[1]).eql('');
+
+      should(join).eql('test[""]');
     });
 
-    describe('translates a compound key', function () {
+    suite('translates a compound key', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'test\']');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -137,10 +162,13 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('test');
+
+        should(join).eql('test');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["test"]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -149,14 +177,17 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('test');
+
+        should(join).eql('test');
       });
 
     });
 
-    describe('translates a basic key under a compound key', function () {
+    suite('translates a basic key under a compound key', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'test\'].test');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -169,10 +200,13 @@ describe('#keys', function () {
         should(keys[1]).be.ok();
         should(keys[1]).be.a.String();
         should(keys[1]).eql('test');
+
+        should(join).eql('test.test');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["test"].test');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -185,14 +219,17 @@ describe('#keys', function () {
         should(keys[1]).be.ok();
         should(keys[1]).be.a.String();
         should(keys[1]).eql('test');
+
+        should(join).eql('test.test');
       });
 
     });
 
-    describe('translates an array key under a compound key', function () {
+    suite('translates an array key under a compound key', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'test\'][0]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -205,10 +242,13 @@ describe('#keys', function () {
         should(keys[1]).not.be.undefined();
         should(keys[1]).be.a.Number();
         should(keys[1]).eql(0);
+
+        should(join).eql('test[0]');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["test"][0]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -221,14 +261,17 @@ describe('#keys', function () {
         should(keys[1]).not.be.undefined();
         should(keys[1]).be.a.Number();
         should(keys[1]).eql(0);
+
+        should(join).eql('test[0]');
       });
 
     });
 
-    describe('translates an integer key', function () {
+    suite('translates an integer key', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'0\']');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -237,10 +280,13 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('0');
+
+        should(join).eql('["0"]');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["0"]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -249,14 +295,17 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('0');
+
+        should(join).eql('["0"]');
       });
 
     });
 
-    describe('translates a special key', function () {
+    suite('translates a special key', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\']]][[[\']');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -265,10 +314,13 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql(']]][[[');
+
+        should(join).eql('["]]][[["]');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["]]][[["]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -277,14 +329,17 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql(']]][[[');
+
+        should(join).eql('["]]][[["]');
       });
 
     });
 
-    describe('translates mismatching quotes', function () {
+    suite('translates mismatching quotes', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'te\'st\']');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -293,10 +348,13 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('te\'st');
+
+        should(join).eql('["te\'st"]');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["te"st"]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -305,14 +363,17 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('te"st');
+
+        should(join).eql('["te\\"st"]');
       });
 
     });
 
-    describe('translates keys with dots', function () {
+    suite('translates keys with dots', function () {
 
-      it('using single quotes', function () {
+      test('using single quotes', function () {
         var keys = dots.keys('[\'test.test\']');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -321,10 +382,13 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('test.test');
+
+        should(join).eql('["test.test"]');
       });
 
-      it('using double quotes', function () {
+      test('using double quotes', function () {
         var keys = dots.keys('["test.test"]');
+        var join = dots.join(keys);
 
         should(keys).be.ok();
         should(keys).be.an.Array();
@@ -333,15 +397,17 @@ describe('#keys', function () {
         should(keys[0]).be.ok();
         should(keys[0]).be.a.String();
         should(keys[0]).eql('test.test');
+
+        should(join).eql('["test.test"]');
       });
 
     });
 
   });
 
-  describe('negative tests', function () {
+  suite('negative tests', function () {
 
-    it('throws an error when provided an undefined value', function () {
+    test('throws an error when provided an undefined value', function () {
       should.throws(
         dots.keys,
         function (err) {
@@ -352,7 +418,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided a non-string', function () {
+    test('throws an error when provided a non-string', function () {
       should.throws(
         function () {
           dots.keys(5);
@@ -365,7 +431,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided an empty string', function () {
+    test('throws an error when provided an empty string', function () {
       should.throws(
         function () {
           dots.keys('');
@@ -378,7 +444,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided an invalid dot notation', function () {
+    test('throws an error when provided an invalid dot notation', function () {
       should.throws(
         function () {
           dots.keys('test.1');
@@ -391,7 +457,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided an invalid bracket notation', function () {
+    test('throws an error when provided an invalid bracket notation', function () {
       should.throws(
         function () {
           dots.keys('test.["test"]');
@@ -404,7 +470,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided an invalid array notation', function () {
+    test('throws an error when provided an invalid array notation', function () {
       should.throws(
         function () {
           dots.keys('test.[0]');
@@ -417,7 +483,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided an invalid array index', function () {
+    test('throws an error when provided an invalid array index', function () {
       should.throws(
         function () {
           dots.keys('test[test]');
@@ -430,7 +496,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided a trailing dot', function () {
+    test('throws an error when provided a trailing dot', function () {
       should.throws(
         function () {
           dots.keys('test.');
@@ -443,7 +509,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided a trailing bracket', function () {
+    test('throws an error when provided a trailing bracket', function () {
       should.throws(
         function () {
           dots.keys('test[');
@@ -456,7 +522,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided mismatching quotes', function () {
+    test('throws an error when provided mismatching quotes', function () {
       should.throws(
         function () {
           dots.keys('["test]');
@@ -469,7 +535,7 @@ describe('#keys', function () {
       );
     });
 
-    it('throws an error when provided sequential dots', function () {
+    test('throws an error when provided sequential dots', function () {
       should.throws(
         function () {
           dots.keys('test..test');

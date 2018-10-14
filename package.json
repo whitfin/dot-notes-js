@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/zackehh/dot-notes.git"
+    "url": "http://github.com/whitfin/dot-notes.git"
   },
-  "bugs": "http://github.com/zackehh/dot-notes/issues",
+  "bugs": "http://github.com/whitfin/dot-notes/issues",
   "license": "MIT",
   "readmeFilename": "README.md",
   "keywords": [
@@ -22,23 +22,14 @@
     "parsing",
     "property"
   ],
-  "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
-    "grunt-codeclimate-reporter": "1.2.0",
-    "grunt-contrib-clean": "0.7.0",
-    "grunt-contrib-jshint": "0.12.0",
-    "grunt-jscs": "2.7.0",
-    "grunt-mocha-istanbul": "3.0.1",
-    "grunt-mocha-test": "0.12.7",
-    "istanbul": "0.4.2",
-    "jshint": "2.9.1",
-    "mocha": "2.4.5",
-    "should": "8.2.1"
-  },
   "scripts": {
-    "coverage": "grunt coverage",
-    "lint": "grunt lint",
-    "test": "grunt test"
+    "test": "eslint --ext=js ./ && mocha -u tdd"
+  },
+  "devDependencies": {
+    "eslint": "5.7.0",
+    "eslint-config-axway": "4.0.0",
+    "eslint-plugin-mocha": "5.2.0",
+    "mocha": "5.2.0",
+    "should": "13.2.3"
   }
 }

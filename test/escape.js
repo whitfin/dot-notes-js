@@ -1,11 +1,11 @@
-const dots = require('../');
-const should = require('should');
+var dots = require('../');
+var should = require('should');
 
-describe('#escape', function () {
+suite('#escape', function () {
 
-  describe('positive tests', function () {
+  suite('positive tests', function () {
 
-    it('escapes a basic key', function () {
+    test('escapes a basic key', function () {
       var escaped = dots.escape('test');
 
       should(escaped).be.ok();
@@ -13,7 +13,7 @@ describe('#escape', function () {
       should(escaped).eql('test');
     });
 
-    it('escapes a numeric key', function () {
+    test('escapes a numeric key', function () {
       var escaped = dots.escape('0');
 
       should(escaped).be.ok();
@@ -21,7 +21,7 @@ describe('#escape', function () {
       should(escaped).eql('["0"]');
     });
 
-    it('escapes a numeric key in an array', function () {
+    test('escapes a numeric key in an array', function () {
       var escaped = dots.escape(0);
 
       should(escaped).be.ok();
@@ -29,7 +29,7 @@ describe('#escape', function () {
       should(escaped).eql('[0]');
     });
 
-    it('escapes a special key', function () {
+    test('escapes a special key', function () {
       var escaped = dots.escape('my-test');
 
       should(escaped).be.ok();
@@ -37,7 +37,7 @@ describe('#escape', function () {
       should(escaped).eql('["my-test"]');
     });
 
-    it('escapes a single quoted key', function () {
+    test('escapes a single quoted key', function () {
       var escaped = dots.escape('\'test\'');
 
       should(escaped).be.ok();
@@ -45,7 +45,7 @@ describe('#escape', function () {
       should(escaped).eql('["\'test\'"]');
     });
 
-    it('escapes a double quoted key', function () {
+    test('escapes a double quoted key', function () {
       var escaped = dots.escape('"test"');
 
       should(escaped).be.ok();
@@ -53,7 +53,7 @@ describe('#escape', function () {
       should(escaped).eql('["\\"test\\""]');
     });
 
-    it('escapes an empty key', function () {
+    test('escapes an empty key', function () {
       var escaped = dots.escape('');
 
       should(escaped).be.ok();
@@ -63,9 +63,9 @@ describe('#escape', function () {
 
   });
 
-  describe('negative tests', function () {
+  suite('negative tests', function () {
 
-    it('throws an error when provided a missing key', function () {
+    test('throws an error when provided a missing key', function () {
       should.throws(
         dots.escape,
         function (err) {
@@ -76,7 +76,7 @@ describe('#escape', function () {
       );
     });
 
-    it('throws an error when provided a non-string', function () {
+    test('throws an error when provided a non-string', function () {
       should.throws(
         function () {
           dots.escape({ a: 5 });
