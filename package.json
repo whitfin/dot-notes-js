@@ -23,7 +23,8 @@
     "property"
   ],
   "scripts": {
-    "test": "eslint --ext=js ./ && mocha -u tdd"
+    "lint": "eslint --ext=js ./",
+    "test": "mocha -u tdd"
   },
   "devDependencies": {
     "eslint": "5.7.0",
