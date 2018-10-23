@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/whitfin/dot-notes.git"
+    "url": "http://github.com/whitfin/dot-notes-js.git"
   },
-  "bugs": "http://github.com/whitfin/dot-notes/issues",
+  "bugs": "http://github.com/whitfin/dot-notes-js/issues",
   "license": "MIT",
   "readmeFilename": "README.md",
   "keywords": [
