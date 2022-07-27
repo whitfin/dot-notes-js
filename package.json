@@ -27,10 +27,10 @@
     "test": "mocha -u tdd"
   },
   "devDependencies": {
-    "eslint": "5.7.0",
-    "eslint-config-axway": "4.0.0",
-    "eslint-plugin-mocha": "5.2.0",
-    "mocha": "5.2.0",
+    "eslint": "^8.20.0",
+    "eslint-config-axway": "^7.0.1",
+    "eslint-plugin-mocha": "^10.1.0",
+    "mocha": "^10.0.0",
     "should": "13.2.3"
   }
 }
