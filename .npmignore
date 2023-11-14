@@ -17,3 +17,7 @@ node_modules
 
 # tests
 test
+
+# CI stuff
+.github
+.eslintrc.js

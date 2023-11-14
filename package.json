@@ -1,6 +1,6 @@
 {
   "name": "dot-notes",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Two way conversions between objects and dot/bracket notation",
   "author": {
     "name": "Isaac Whitfield",
@@ -23,14 +23,12 @@
     "property"
   ],
   "scripts": {
-    "lint": "eslint --ext=js ./",
+    "lint": "eslint lib/* test/*.js *.js",
     "test": "mocha -u tdd"
   },
   "devDependencies": {
-    "eslint": "^8.20.0",
-    "eslint-config-axway": "^7.0.1",
-    "eslint-plugin-mocha": "^10.1.0",
-    "mocha": "^10.0.0",
+    "eslint": "^8.53.0",
+    "mocha": "^10.2.0",
     "should": "13.2.3"
   }
 }

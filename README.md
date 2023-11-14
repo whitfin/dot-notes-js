@@ -1,5 +1,6 @@
 # dot-notes
-[![Build Status](https://img.shields.io/travis/whitfin/dot-notes-js.svg)](https://travis-ci.org/whitfin/dot-notes-js) [![npm](https://img.shields.io/npm/v/dot-notes.svg)](https://www.npmjs.com/package/dot-notes)
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/whitfin/dot-notes-js/ci.yml?branch=main)](https://github.com/whitfin/dot-notes-js/actions) [![Published Version](https://img.shields.io/npm/v/dot-notes.svg)](https://npmjs.com/package/dot-notes) [![Published Downloads](https://img.shields.io/npm/dt/dot-notes)](https://npmjs.com/package/dot-notes)
 
 This module provides a simple way of constructing/parsing dot/bracket notation in JavaScript/Node.js. It was born from a need to flatten Objects in a customized way, making `dot-notes` useful in many scenarios.
 
@@ -22,7 +23,7 @@ In the interest of short READMEs, please visit the wiki for [documentation](http
 ### Quick Examples
 
 ```javascript
-var dots = require('dot-notes');
+const dots = require('dot-notes');
 
 dots.create({}, 'test.test', 'example');
   => { "test": { "test": "example" } }
@@ -55,6 +56,4 @@ Tests can be run as follows:
 
 ```bash
 $ npm test
-$ grunt test
-$ grunt # runs the default Travis loop
 ```
